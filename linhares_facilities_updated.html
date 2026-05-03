@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Linhares Facilities – Soluções em Facilities</title>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Montserrat:ital,wght@0,500;0,700;1,500;1,700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy: #282828;
+      --blue: #282828;
+      --accent: #f08702;
+      --accent-light: #f7a034;
+      --white: #FFFFFF;
+      --off: #f3f3f3;
+      --gray: #6B7B8D;
+      --light-gray: #E8ECF0;
+      --text: #282828;
+      --pending-bg: #FFF8EC;
+      --pending-border: #E07B2A;
+      --pending-text: #7A3E0A;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'IBM Plex Sans', sans-serif; color: var(--text); background: #fff; overflow-x: hidden; }
+
+    .pending-inline {
+      display: inline-block;
+      background: var(--pending-bg);
+      border: 1.5px dashed var(--pending-border);
+      color: var(--pending-text);
+      font-size: 0.7rem; font-weight: 700;
+      padding: 3px 10px; border-radius: 3px;
+      letter-spacing: 0.06em; text-transform: uppercase;
+    }
+    .pending-block {
+      background: var(--pending-bg);
+      border: 2px dashed var(--pending-border);
+      border-radius: 3px; padding: 20px 24px;
+      color: var(--pending-text); text-align: center;
+    }
+    .pending-block .tag {
+      font-size: 0.65rem; font-weight: 800;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      opacity: 0.6; margin-bottom: 6px; display: block;
+    }
+    .pending-block p { font-size: 0.88rem; font-weight: 500; line-height: 1.6; }
+
+    /* NAV */
+    #nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 999;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 60px; height: 78px;
+      background: rgba(40,40,40,0.97);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+    .nav-brand { display: flex; align-items: center; gap: 14px; }
+
+    .nav-name { font-size: 1rem; font-weight: 700; color: #fff; letter-spacing: -0.01em; }
+    .nav-name span { color: var(--accent); }
+    nav ul { list-style: none; display: flex; gap: 40px; align-items: center; }
+    nav ul a {
+      text-decoration: none; font-size: 0.82rem; font-weight: 500;
+      color: rgba(255,255,255,0.7); letter-spacing: 0.02em; transition: color 0.2s;
+    }
+    nav ul a:hover { color: #fff; }
+    .nav-btn {
+      background: var(--accent) !important; color: #fff !important;
+      padding: 10px 22px; border-radius: 3px; font-weight: 600 !important;
+    }
+    .nav-btn:hover { background: var(--accent-light) !important; }
+
+    /* HERO */
+    #hero {
+      position: relative; height: 100vh; min-height: 640px;
+      display: flex; align-items: flex-end; overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background: linear-gradient(160deg, #282828 0%, #353535 50%, #454545 100%);
+    }
+    .hero-bg::before {
+      content: ''; position: absolute; top: -120px; right: -80px;
+      width: 600px; height: 600px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(240,135,2,0.18) 0%, transparent 65%);
+    }
+    .hero-grid {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 80px 80px;
+    }
+    .hero-content {
+      position: relative; z-index: 2; width: 100%;
+      padding: 0 60px 100px;
+      display: flex; align-items: flex-end; justify-content: space-between; gap: 60px;
+    }
+    .hero-left { max-width: 680px; }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: rgba(240,135,2,0.15); border: 1px solid rgba(240,135,2,0.4);
+      color: var(--accent-light); font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      padding: 8px 16px; border-radius: 3px; margin-bottom: 32px;
+    }
+    .hero-eyebrow::before {
+      content: ''; width: 6px; height: 6px;
+      background: var(--accent); border-radius: 50%;
+    }
+    .hero-h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(3rem, 5.5vw, 5rem);
+      font-weight: 700; color: #fff; line-height: 1.08;
+      margin-bottom: 28px; letter-spacing: -0.02em;
+    }
+    .hero-h1 em { font-style: italic; color: var(--accent-light); }
+    .hero-sub {
+      font-size: 1.05rem; color: rgba(255,255,255,0.65);
+      line-height: 1.8; max-width: 500px; margin-bottom: 44px;
+    }
+    .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
+    .btn-main {
+      background: var(--accent); color: #fff; font-weight: 700; font-size: 0.9rem;
+      padding: 16px 36px; border-radius: 3px; text-decoration: none;
+      letter-spacing: 0.02em; transition: all 0.2s;
+      display: inline-flex; align-items: center; gap: 10px;
+    }
+    .btn-main:hover { background: var(--accent-light); transform: translateY(-2px); box-shadow: 0 10px 28px rgba(240,135,2,0.4); }
+    .btn-ghost {
+      color: rgba(255,255,255,0.8); font-weight: 600; font-size: 0.9rem;
+      padding: 16px 28px; border-radius: 3px;
+      border: 1.5px solid rgba(255,255,255,0.2);
+      text-decoration: none; transition: all 0.2s;
+    }
+    .btn-ghost:hover { border-color: rgba(255,255,255,0.55); color: #fff; }
+    .scroll-hint {
+      display: inline-flex; align-items: center; gap: 10px;
+      color: rgba(255,255,255,0.35); font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      writing-mode: vertical-rl; transform: rotate(180deg);
+    }
+    .scroll-hint::before {
+      content: ''; width: 1px; height: 60px;
+      background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.3));
+    }
+
+    /* STATS */
+    #stats { background: var(--accent); padding: 0 60px; }
+    .stats-inner { display: flex; }
+    .stat {
+      flex: 1; padding: 36px 40px;
+      border-right: 1px solid rgba(255,255,255,0.2);
+    }
+    .stat:last-child { border-right: none; }
+    .stat-num {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 2.6rem; font-weight: 700; color: #fff; line-height: 1; margin-bottom: 6px;
+    }
+    .stat-label {
+      font-size: 0.75rem; font-weight: 600;
+      color: rgba(255,255,255,0.75); letter-spacing: 0.08em; text-transform: uppercase;
+    }
+
+    /* SHARED */
+    .section-eyebrow {
+      font-size: 0.72rem; font-weight: 800; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--accent); margin-bottom: 14px;
+    }
+    .section-h2 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(1.9rem, 3vw, 2.7rem);
+      font-weight: 700; color: var(--navy); line-height: 1.2;
+      margin-bottom: 20px; letter-spacing: -0.02em;
+    }
+    .section-h2 em { font-style: italic; color: var(--accent); }
+    .section-lead { font-size: 1rem; color: var(--gray); line-height: 1.85; max-width: 560px; }
+
+    /* SOBRE */
+    #sobre { padding: 120px 60px; background: var(--off); }
+    .sobre-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 100px; align-items: start; }
+    .sobre-text { margin-top: 32px; }
+    .sobre-text p { font-size: 0.97rem; color: #3A4D5E; line-height: 1.9; margin-bottom: 20px; }
+
+    .mvv-stack { display: flex; flex-direction: column; gap: 20px; }
+    .mvv-card {
+      background: #fff; border-radius: 3px; padding: 28px 30px;
+      border-left: 4px solid var(--accent);
+      box-shadow: 0 2px 16px rgba(40,40,40,0.06);
+    }
+    .mvv-card h4 {
+      font-size: 0.68rem; font-weight: 800; letter-spacing: 0.16em;
+      text-transform: uppercase; color: var(--accent); margin-bottom: 12px;
+    }
+    .mvv-card p { font-size: 0.92rem; color: #3A4D5E; line-height: 1.75; }
+    .mvv-valores span {
+      display: inline-block; background: var(--off); color: var(--navy);
+      font-size: 0.78rem; font-weight: 600;
+      padding: 5px 12px; border-radius: 3px; margin: 4px 3px;
+    }
+
+    /* FUNDADORES */
+    #fundadores { padding: 120px 60px; background: var(--navy); }
+    .fundadores-header { margin-bottom: 64px; }
+
+    /* Carousel & Founder cards */
+    .fundadores-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: stretch; }
+    .fundador-card {
+      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.09);
+      border-radius: 3px; overflow: hidden; transition: border-color 0.25s, transform 0.25s;
+      display: flex; flex-direction: column; min-height: 750px;
+    }
+    .fundador-card:hover { border-color: rgba(240,135,2,0.45); transform: translateY(-6px); }
+
+    .carousel-wrapper { position: relative; width: 100%; height: 70%; overflow: hidden; background: #111318; border-bottom: 1.5px dashed rgba(240,135,2,0.4); }
+    .carousel-track { display: flex; height: 100%; transition: transform 0.5s cubic-bezier(0.4,0,0.2,1); will-change: transform; }
+    .carousel-slide { min-width: 100%; height: 100%; position: relative; }
+    .carousel-slide img { width: 100%; height: 100%; object-fit: contain; object-position: center; display: block; background: #111318; }
+    
+    .carousel-btn { position: absolute; top: 50%; transform: translateY(-50%); z-index: 10; width: 40px; height: 40px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.25); background: rgba(0,0,0,0.5); backdrop-filter: blur(6px); color: #fff; font-size: 1.1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.3s, border-color 0.3s, transform 0.3s; }
+    .carousel-btn:hover { background: var(--accent); border-color: var(--accent); transform: translateY(-50%) scale(1.1); }
+    .carousel-btn.prev { left: 12px; }
+    .carousel-btn.next { right: 12px; }
+    
+    .carousel-dots { display: flex; justify-content: center; gap: 8px; padding: 12px 0; position: absolute; bottom: 8px; left: 50%; transform: translateX(-50%); z-index: 10; }
+    .carousel-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.3); border: none; cursor: pointer; transition: background 0.3s, transform 0.3s; }
+    .carousel-dot.active { background: var(--accent); transform: scale(1.3); }
+
+    .fundador-body { padding: 30px 32px; height: 30%; display: flex; flex-direction: column; justify-content: flex-start; }
+    .fundador-name { font-family: 'Montserrat', sans-serif; font-size: 1.35rem; font-weight: 700; color: #fff; margin-bottom: 4px; }
+    .fundador-role { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 18px; }
+
+    @media(max-width:860px){
+      .fundador-card { min-height: 650px; }
+      .carousel-btn { width: 34px; height: 34px; font-size: 0.9rem; }
+      .fundadores-grid { grid-template-columns: 1fr; }
+      #fundadores { padding: 80px 20px; }
+    }
+
+    /* SERVIÇOS */
+    #servicos { padding: 120px 60px; background: #fff; }
+    .servicos-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 64px; gap: 60px; }
+    .servicos-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 2px; background: var(--light-gray); border-radius: 3px; overflow: hidden;
+    }
+    .serv-card { background: #fff; padding: 36px 30px; transition: background 0.25s; }
+    .serv-card:hover { background: var(--off); }
+    .serv-icon {
+      width: 52px; height: 52px; background: rgba(240,135,2,0.1);
+      border-radius: 3px; display: flex; align-items: center;
+      justify-content: center; font-size: 1.5rem; margin-bottom: 20px;
+    }
+    .serv-card h3 { font-size: 0.95rem; font-weight: 700; color: var(--navy); margin-bottom: 14px; }
+    .serv-card ul { list-style: none; }
+    .serv-card ul li {
+      font-size: 0.8rem; color: var(--gray); padding: 5px 0;
+      line-height: 1.5; border-bottom: 1px solid rgba(40,40,40,0.06);
+    }
+    .serv-card ul li:last-child { border-bottom: none; }
+
+    /* QUALIDADE */
+    #qualidade { padding: 120px 60px; background: var(--navy); position: relative; overflow: hidden; }
+    #qualidade::before {
+      content: ''; position: absolute; top: -200px; right: -200px;
+      width: 600px; height: 600px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(240,135,2,0.1) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .qualidade-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; margin-top: 64px; }
+    .qualidade-text p { font-size: 0.97rem; color: rgba(255,255,255,0.7); line-height: 1.9; margin-bottom: 18px; }
+    .politica-items { display: flex; flex-direction: column; gap: 16px; margin-top: 10px; }
+    .politica-item { display: flex; gap: 16px; align-items: flex-start; }
+    .politica-num {
+      flex-shrink: 0; width: 32px; height: 32px; background: var(--accent);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-size: 0.72rem; font-weight: 800; color: #fff;
+    }
+    .politica-item p { font-size: 0.88rem !important; margin: 0 !important; padding-top: 6px; color: rgba(255,255,255,0.7) !important; }
+    .qualidade-right { display: flex; flex-direction: column; gap: 24px; }
+    .cert-card {
+      background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 3px; padding: 30px;
+    }
+    .cert-card h4 { font-family: 'Montserrat', sans-serif; font-size: 1.05rem; color: #fff; margin-bottom: 12px; }
+    .cert-card p { font-size: 0.88rem; color: rgba(255,255,255,0.6); line-height: 1.75; }
+
+    /* ATUAÇÃO */
+    #atuacao { padding: 120px 60px; background: var(--accent); }
+    .atuacao-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .atuacao-left .section-h2 { color: #fff; }
+    .atuacao-left .section-eyebrow { color: rgba(255,255,255,0.7); }
+    .atuacao-left .section-lead { color: rgba(255,255,255,0.75); }
+    .estados-list { margin-top: 36px; display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .estado {
+      background: rgba(255,255,255,0.12); border-radius: 3px;
+      padding: 16px 20px; display: flex; align-items: center; gap: 12px; transition: background 0.2s;
+    }
+    .estado:hover { background: rgba(255,255,255,0.2); }
+    .estado-dot { width: 8px; height: 8px; background: #fff; border-radius: 50%; flex-shrink: 0; }
+    .estado-nome { font-size: 0.88rem; font-weight: 700; color: #fff; }
+    .atuacao-right { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .atuacao-stat { background: rgba(0,0,0,0.15); border-radius: 3px; padding: 28px 24px; text-align: center; }
+    .atuacao-stat .num { font-family: 'Montserrat', sans-serif; font-size: 2.4rem; font-weight: 700; color: #fff; line-height: 1; }
+    .atuacao-stat .lbl { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.09em; color: rgba(255,255,255,0.65); margin-top: 8px; }
+
+    /* DEPOIMENTOS */
+    #depoimentos { padding: 120px 60px; background: var(--off); }
+    .depoimentos-header { margin-bottom: 64px; }
+    .depoimentos-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .dep-card { background: #fff; border-radius: 3px; padding: 36px 32px; box-shadow: 0 2px 20px rgba(40,40,40,0.06); }
+    .dep-card.is-pending { background: var(--pending-bg); border: 2px dashed var(--pending-border); box-shadow: none; }
+    .dep-quote { font-family: 'Montserrat', sans-serif; font-size: 3.5rem; line-height: 1; color: var(--accent); opacity: 0.5; margin-bottom: 8px; }
+    .dep-author { font-weight: 700; font-size: 0.88rem; color: var(--navy); }
+    .dep-company { font-size: 0.78rem; color: var(--gray); }
+
+    /* CLIENTES */
+    #clientes { padding: 80px 60px; background: #fff; border-top: 1px solid var(--light-gray); }
+    .clientes-inner { text-align: center; }
+    .clientes-inner .section-eyebrow { margin-bottom: 48px; }
+    .clientes-logos { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 20px; }
+    .logo-slot {
+      width: 140px; height: 60px; background: var(--off); border-radius: 3px;
+      border: 1.5px dashed rgba(240,135,2,0.35);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.6rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.1em; color: var(--pending-text); opacity: 0.7;
+    }
+
+    /* CONTATO */
+    #contato { padding: 120px 60px; background: var(--navy); position: relative; overflow: hidden; }
+    #contato::after {
+      content: ''; position: absolute; bottom: -120px; left: -120px;
+      width: 500px; height: 500px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(240,135,2,0.1) 0%, transparent 65%);
+    }
+    .contato-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 80px; align-items: start; position: relative; z-index: 1; }
+    .contato-left .section-h2 { color: #fff; }
+    .contato-left .section-eyebrow { color: var(--accent-light); }
+    .contato-left .section-lead { color: rgba(255,255,255,0.6); margin-bottom: 40px; }
+    .contact-items { display: flex; flex-direction: column; gap: 24px; }
+    .contact-item { display: flex; gap: 18px; align-items: flex-start; }
+    .contact-icon {
+      width: 46px; height: 46px; flex-shrink: 0;
+      background: rgba(240,135,2,0.12); border-radius: 3px;
+      display: flex; align-items: center; justify-content: center; font-size: 1.1rem;
+    }
+    .contact-label { font-size: 0.65rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent); margin-bottom: 5px; }
+    .contact-value { font-size: 0.95rem; color: #fff; font-weight: 500; }
+    .form-panel { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 3px; padding: 44px; }
+    .form-panel h3 { font-family: 'Montserrat', sans-serif; font-size: 1.3rem; color: #fff; margin-bottom: 30px; }
+    .f-group { margin-bottom: 18px; }
+    .f-group label { display: block; font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.45); margin-bottom: 8px; }
+    .f-group input, .f-group select, .f-group textarea {
+      width: 100%; background: rgba(255,255,255,0.07); border: 1.5px solid rgba(255,255,255,0.1);
+      border-radius: 3px; padding: 13px 16px; color: #fff; font-size: 0.9rem;
+      font-family: 'IBM Plex Sans', sans-serif; outline: none; transition: border-color 0.2s;
+    }
+    .f-group select option { background: var(--navy); }
+    .f-group input:focus, .f-group select:focus, .f-group textarea:focus { border-color: var(--accent); }
+    .f-group textarea { height: 100px; resize: vertical; }
+    .f-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .btn-send {
+      width: 100%; background: var(--accent); color: #fff; font-weight: 700; font-size: 0.9rem;
+      padding: 15px; border-radius: 3px; border: none; cursor: pointer;
+      font-family: 'IBM Plex Sans', sans-serif; letter-spacing: 0.03em; transition: all 0.2s; margin-top: 6px;
+    }
+    .btn-send:hover { background: var(--accent-light); transform: translateY(-2px); }
+
+    /* FOOTER */
+    footer { background: #060E18; padding: 60px 60px 30px; border-top: 1px solid rgba(255,255,255,0.06); }
+    .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 60px; padding-bottom: 48px; border-bottom: 1px solid rgba(255,255,255,0.07); }
+    .footer-brand-text { font-size: 0.85rem; color: rgba(255,255,255,0.4); line-height: 1.85; margin-top: 14px; max-width: 280px; }
+    .footer-col h5 { font-size: 0.65rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.14em; color: var(--accent); margin-bottom: 18px; }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 12px; }
+    .footer-col ul li a { text-decoration: none; font-size: 0.83rem; color: rgba(255,255,255,0.45); transition: color 0.2s; }
+    .footer-col ul li a:hover { color: rgba(255,255,255,0.8); }
+    .footer-bottom { padding-top: 28px; display: flex; justify-content: space-between; align-items: center; font-size: 0.75rem; color: rgba(255,255,255,0.22); flex-wrap: wrap; gap: 12px; }
+
+    /* RESPONSIVE */
+    @media (max-width: 1100px) {
+      #nav, .hero-content, #sobre, #fundadores, #servicos, #qualidade, #atuacao, #depoimentos, #clientes, #contato { padding-left: 30px; padding-right: 30px; }
+      #stats { padding-left: 30px; padding-right: 30px; }
+      footer { padding: 48px 30px 24px; }
+      .servicos-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 860px) {
+      nav ul { display: none; }
+      .sobre-layout, .fundadores-grid, .qualidade-grid, .atuacao-inner, .contato-grid, .footer-top { grid-template-columns: 1fr; gap: 40px; }
+      .servicos-grid, .depoimentos-grid { grid-template-columns: 1fr; }
+      .stats-inner { flex-wrap: wrap; }
+      .stat { flex: 0 0 50%; }
+      .hero-content { flex-direction: column; padding-bottom: 80px; }
+      .scroll-hint { display: none; }
+      .atuacao-right { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav id="nav">
+    <div class="nav-brand">
+      <div class="nav-name">Linhares <span>Facilities</span></div>
+    </div>
+    <ul>
+      <li><a href="#sobre">Sobre</a></li>
+      <li><a href="#servicos">Serviços</a></li>
+      <li><a href="#qualidade">Qualidade</a></li>
+      <li><a href="#atuacao">Atuação</a></li>
+      <li><a href="#depoimentos">Clientes</a></li>
+      <li><a href="https://wa.me/5598984617312?text=Olá!%20Gostaria%20de%20mais%20informações%20sobre%20os%20serviços%20da%20Linhares%20Facilities." target="_blank" class="nav-btn">Fale Conosco</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-bg"><div class="hero-grid"></div></div>
+    <div class="hero-content">
+      <div class="hero-left">
+        <div class="hero-eyebrow">Desde 2007 · Norte &amp; Nordeste do Brasil</div>
+        <h1 class="hero-h1">Cuidamos da sua<br>estrutura para você<br>focar no <em>essencial</em></h1>
+        <p class="hero-sub">Soluções completas em Facilities — limpeza, manutenção, portaria, jardinagem e muito mais. Mais de 19 anos entregando qualidade e eficiência.</p>
+        <div class="hero-actions">
+          <a href="#contato" class="btn-main">Solicitar Orçamento <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><path d="M2.5 7.5h10M9 3.5l4 4-4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <a href="#servicos" class="btn-ghost">Nossos Serviços</a>
+        </div>
+      </div>
+      <div><span class="scroll-hint">Role para explorar</span></div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <div id="stats">
+    <div class="stats-inner">
+      <div class="stat"><div class="stat-num">+19</div><div class="stat-label">Anos de Atuação</div></div>
+      <div class="stat"><div class="stat-num">+400</div><div class="stat-label">Colaboradores</div></div>
+      <div class="stat"><div class="stat-num">6</div><div class="stat-label">Estados Atendidos</div></div>
+      <div class="stat"><div class="stat-num">8+</div><div class="stat-label">Tipos de Serviço</div></div>
+    </div>
+  </div>
+
+  <!-- SOBRE -->
+  <section id="sobre">
+    <div class="sobre-layout">
+      <div>
+        <p class="section-eyebrow">Quem Somos</p>
+        <h2 class="section-h2">Uma empresa construída<br>sobre <em>confiança</em></h2>
+        <div class="sobre-text">
+          <p>A Linhares Facilities é especializada em manter a infraestrutura e o suporte operacional de outras organizações. Nossos serviços são essenciais para o funcionamento diário de uma empresa — limpeza, manutenção, jardinagem, portaria, recepção, copa, motorista e muito mais.</p>
+          <p>Desde 2007, expandimos do Maranhão para os estados de Alagoas, Pará, Piauí, Tocantins e Goiás, consolidando nossa presença no Norte e Nordeste. São mais de 19 anos movidos pelo compromisso com qualidade, segurança e excelência.</p>
+        </div>
+
+      </div>
+      <div class="mvv-stack">
+        <div class="mvv-card"><h4>Missão</h4><p>Promover soluções em Facilities, assegurando qualidade, segurança e sustentabilidade, contribuindo para o sucesso dos nossos clientes.</p></div>
+        <div class="mvv-card"><h4>Visão</h4><p>Expandir nossas operações, tornando-nos referência em soluções em Facilities com crescimento sustentável e excelência reconhecida nos mercados em que atuamos.</p></div>
+        <div class="mvv-card mvv-valores"><h4>Valores</h4><div><span>Respeito</span><span>Ética</span><span>Segurança</span><span>Valorização</span><span>Comprometimento</span><span>Inovação</span><span>Criatividade</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FUNDADORES -->
+  <section id="fundadores">
+    <div class="fundadores-header">
+      <p class="section-eyebrow" style="color:var(--accent-light)">Liderança</p>
+      <h2 class="section-h2" style="color:#fff">Os líderes por trás da <em style="color:var(--accent-light)">Linhares Facilities</em></h2>
+    </div>
+
+    <!-- Cards dos Fundadores com Carrosséis -->
+    <div class="fundadores-grid">
+      
+      <!-- Card Pai -->
+      <div class="fundador-card">
+        <div class="carousel-wrapper" id="carouselPai">
+          <div class="carousel-track">
+            <div class="carousel-slide"><img src="images/IMG_4087.JPEG" alt="Reinaldo Linhares" loading="lazy"></div>
+            <div class="carousel-slide"><img src="images/IMG_4088.JPEG" alt="Reinaldo Linhares" loading="lazy"></div>
+            <div class="carousel-slide"><img src="images/IMG_4090.JPEG" alt="Reinaldo Linhares" loading="lazy"></div>
+            <div class="carousel-slide"><img src="images/IMG_4091.JPEG" alt="Reinaldo Linhares" loading="lazy"></div>
+            <div class="carousel-slide"><img src="images/IMG_4092.JPEG" alt="Reinaldo Linhares" loading="lazy"></div>
+          </div>
+          <button class="carousel-btn prev" aria-label="Anterior">&#10094;</button>
+          <button class="carousel-btn next" aria-label="Próximo">&#10095;</button>
+          <div class="carousel-dots"></div>
+        </div>
+        <div class="fundador-body">
+          <div class="fundador-name">Reinaldo Linhares</div>
+          <div class="fundador-role">Fundador &amp; CEO</div>
+          <p style="font-size:0.9rem;color:rgba(255,255,255,0.65);line-height:1.85;">Antonio Reinaldo Santos Linhares começou sua trajetória profissional em um grande grupo de distribuição de energia elétrica. Ao se aposentar, foi convidado a constituir uma empresa para continuar trabalhando com o mesmo grupo — e assim nasceu a Linhares Facilities. O que começou como um projeto para manter a mente ativa, cresceu para uma das maiores empresas de facilities do Norte e Nordeste do Brasil.</p>
+        </div>
+      </div>
+
+      <!-- Card Filho -->
+      <div class="fundador-card">
+        <div class="carousel-wrapper" id="carouselFilho">
+          <div class="carousel-track">
+            <div class="carousel-slide"><img src="images/IMG_4089.JPEG" alt="André Linhares" loading="lazy"></div>
+            <div class="carousel-slide"><img src="images/IMG_4093.JPEG" alt="André Linhares" loading="lazy"></div>
+          </div>
+          <button class="carousel-btn prev" aria-label="Anterior">&#10094;</button>
+          <button class="carousel-btn next" aria-label="Próximo">&#10095;</button>
+          <div class="carousel-dots"></div>
+        </div>
+        <div class="fundador-body">
+          <div class="fundador-name">André Linhares</div>
+          <div class="fundador-role">Diretor</div>
+          <p style="font-size:0.9rem;color:rgba(255,255,255,0.65);line-height:1.85;">Filho do fundador, André Linhares cresceu acompanhando de perto a construção de uma empresa que tem como base o respeito, a ética e o comprometimento. Hoje, como Diretor, lidera as operações da Linhares Facilities com a mesma garra e dedicação que marcaram a origem da empresa — garantindo que o legado familiar se traduza em excelência para cada cliente atendido.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SERVIÇOS -->
+  <section id="servicos">
+    <div class="servicos-header">
+      <div><p class="section-eyebrow">O Que Oferecemos</p><h2 class="section-h2">Soluções para toda a<br>sua operação</h2></div>
+      <p class="section-lead">Parceiro ideal para terceirização de mão de obra operacional. Cuidamos de cada detalhe para você focar no seu negócio.</p>
+    </div>
+    <div class="servicos-grid">
+      <div class="serv-card"><div class="serv-icon">🧹</div><h3>Limpeza & Conservação</h3><ul><li>Áreas internas e externas</li><li>Banheiros e vestiários</li><li>Copas e alimentação</li><li>Gestão de resíduos</li><li>Limpeza técnica especializada</li></ul></div>
+      <div class="serv-card"><div class="serv-icon">🔧</div><h3>Manutenção Predial</h3><ul><li>Elétrica, hidráulica e civil</li><li>Ar condicionado</li><li>Marcenaria e serralheria</li><li>Manutenção preventiva</li><li>Gestão de ordens de serviço</li></ul></div>
+      <div class="serv-card"><div class="serv-icon">🌿</div><h3>Jardinagem</h3><ul><li>Manutenção de gramados</li><li>Podas e controle de pragas</li><li>Irrigação e paisagismo</li><li>Jardins internos e externos</li><li>Coleta de resíduos verdes</li></ul></div>
+      <div class="serv-card"><div class="serv-icon">☕</div><h3>Copa & Cozinha</h3><ul><li>Preparação de bebidas</li><li>Atendimento em reuniões</li><li>Organização e higienização</li><li>Apoio em eventos internos</li><li>Controle de materiais</li></ul></div>
+      <div class="serv-card"><div class="serv-icon">🚗</div><h3>Motorista & Motoboy</h3><ul><li>Transporte executivo</li><li>Transporte de documentos</li><li>Discrição e confidencialidade</li><li>Controle de viagens</li></ul></div>
+      <div class="serv-card"><div class="serv-icon">🏢</div><h3>Portaria & Recepção</h3><ul><li>Controle de acesso</li><li>Monitoramento de áreas</li><li>Gestão de correspondências</li><li>Apoio administrativo</li></ul></div>
+      <div class="serv-card"><div class="serv-icon">📦</div><h3>Operacional</h3><ul><li>Carga e descarga</li><li>Organização de estoque</li><li>Movimentação de materiais</li><li>Normas de segurança</li></ul></div>
+      <div class="serv-card"><div class="serv-icon">📋</div><h3>Administrativo</h3><ul><li>Gestão administrativa</li><li>Suporte ao RH</li><li>Controle operacional</li><li>Compras e materiais</li></ul></div>
+    </div>
+  </section>
+
+  <!-- QUALIDADE -->
+  <section id="qualidade">
+    <p class="section-eyebrow" style="color:var(--accent-light)">Excelência & Certificação</p>
+    <h2 class="section-h2" style="color:#fff">Compromisso com a qualidade<br>em <em style="color:var(--accent-light)">cada detalhe</em></h2>
+    <div class="qualidade-grid">
+      <div class="qualidade-text">
+        <p>Temos o compromisso de oferecer soluções de Facilities com excelência e sustentabilidade, seguindo princípios sólidos de qualidade em todas as operações.</p>
+        <div class="politica-items">
+          <div class="politica-item"><div class="politica-num">01</div><p>Superar expectativas com serviços personalizados e conformidade com requisitos legais e normativos.</p></div>
+          <div class="politica-item"><div class="politica-num">02</div><p>Adotar práticas inovadoras e buscar continuamente o aperfeiçoamento dos processos.</p></div>
+          <div class="politica-item"><div class="politica-num">03</div><p>Priorizar a segurança de colaboradores, clientes e parceiros em todas as atividades.</p></div>
+          <div class="politica-item"><div class="politica-num">04</div><p>Investir no desenvolvimento contínuo da equipe e promover um ambiente inclusivo e respeitoso.</p></div>
+        </div>
+      </div>
+      <div class="qualidade-right">
+        <div class="cert-card"><h4>🏅 Certificação PROCEM/PDF</h4><p>A Linhares Facilities integra o Programa de Certificação de Fornecedores do Maranhão — reconhecimento que atesta nosso compromisso com qualidade, responsabilidade e eficiência.</p></div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ATUAÇÃO -->
+  <section id="atuacao">
+    <div class="atuacao-inner">
+      <div class="atuacao-left">
+        <p class="section-eyebrow">Nossa Atuação</p>
+        <h2 class="section-h2">Presença consolidada no<br>Norte e Nordeste</h2>
+        <p class="section-lead">De origem maranhense, expandimos para seis estados, levando qualidade e comprometimento em cada contrato.</p>
+        <div class="estados-list">
+          <div class="estado"><div class="estado-dot"></div><span class="estado-nome">Maranhão</span></div>
+          <div class="estado"><div class="estado-dot"></div><span class="estado-nome">Alagoas</span></div>
+          <div class="estado"><div class="estado-dot"></div><span class="estado-nome">Pará</span></div>
+          <div class="estado"><div class="estado-dot"></div><span class="estado-nome">Piauí</span></div>
+          <div class="estado"><div class="estado-dot"></div><span class="estado-nome">Tocantins</span></div>
+          <div class="estado"><div class="estado-dot"></div><span class="estado-nome">Goiás</span></div>
+        </div>
+      </div>
+      <div class="atuacao-right">
+        <div class="atuacao-stat"><div class="num">+19</div><div class="lbl">Anos de Atuação</div></div>
+        <div class="atuacao-stat"><div class="num">6</div><div class="lbl">Estados</div></div>
+        <div class="atuacao-stat"><div class="num">+400</div><div class="lbl">Colaboradores</div></div>
+        <div class="atuacao-stat"><div class="num">8+</div><div class="lbl">Serviços</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DEPOIMENTOS -->
+  <section id="depoimentos">
+    <div class="depoimentos-header">
+      <p class="section-eyebrow">Provas Sociais</p>
+      <h2 class="section-h2">O que nossos clientes<br>dizem sobre nós</h2>
+    </div>
+    <div class="depoimentos-grid" style="grid-template-columns:1fr;max-width:700px;margin:0 auto;">
+      <div class="dep-card" style="border:1px solid rgba(240,135,2,0.25);background:rgba(255,255,255,0.04);">
+        <div class="dep-quote" style="color:var(--accent);font-size:3rem;line-height:1;margin-bottom:16px;">"</div>
+        <p style="font-size:1rem;color:rgba(40,40,40,0.85);line-height:1.85;font-style:italic;margin-bottom:24px;">A Linhares Facilities tem sido uma parceira fundamental para a Equatorial. Profissionalismo, comprometimento e qualidade em cada serviço prestado. Uma empresa que entende o que é responsabilidade e entrega resultados.</p>
+        <div class="dep-author" style="font-weight:700;color:var(--navy)">Equatorial Energia</div>
+        <div class="dep-company" style="color:var(--gray);font-size:0.8rem;">Cliente · Setor de Energia</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTATO -->
+  <section id="contato">
+    <div class="contato-grid">
+      <div class="contato-left">
+        <p class="section-eyebrow">Fale Conosco</p>
+        <h2 class="section-h2">Pronto para cuidar da<br><em style="color:var(--accent-light)">sua operação</em></h2>
+        <p class="section-lead">Entre em contato e descubra como apoiar sua empresa com soluções completas em facilities no Norte e Nordeste do Brasil.</p>
+        <div class="contact-items">
+          <div class="contact-item"><div class="contact-icon">📱</div><div><div class="contact-label">WhatsApp Comercial</div><div class="contact-value"><a href="https://wa.me/5598984617312" style="color:var(--accent);text-decoration:none;font-weight:600">(98) 98461-7312</a></div></div></div>
+
+          <div class="contact-item"><div class="contact-icon">📍</div><div><div class="contact-label">Endereço</div><div class="contact-value">Rua dos Gaviões, nº 15<br>Ponta do Farol · São Luís, MA</div></div></div>
+        </div>
+      </div>
+      <div class="form-panel">
+        <h3>Solicitar Orçamento</h3>
+        <div class="f-row">
+          <div class="f-group"><label>Empresa</label><input id="f-empresa" type="text" placeholder="Nome da empresa" /></div>
+          <div class="f-group"><label>Seu Nome</label><input id="f-nome" type="text" placeholder="Nome completo" /></div>
+        </div>
+        <div class="f-row">
+          <div class="f-group"><label>Telefone</label><input id="f-tel" type="text" placeholder="(98) 00000-0000" /></div>
+          <div class="f-group"><label>E-mail</label><input id="f-email" type="email" placeholder="email@empresa.com.br" /></div>
+        </div>
+        <div class="f-group">
+          <label>Serviço de Interesse</label>
+          <select id="f-servico"><option value="">Selecione um serviço</option><option>Limpeza & Conservação</option><option>Manutenção Predial</option><option>Jardinagem</option><option>Copa & Cozinha</option><option>Portaria & Recepção</option><option>Motorista / Motoboy</option><option>Operacional</option><option>Administrativo</option><option>Múltiplos serviços</option></select>
+        </div>
+        <div class="f-group"><label>Mensagem</label><textarea id="f-msg" placeholder="Descreva brevemente suas necessidades…"></textarea></div>
+        <button class="btn-send" onclick="enviarWhatsApp()">Enviar pelo WhatsApp →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-top">
+      <div>
+        <div class="nav-name" style="font-size:1.05rem">Linhares <span style="color:var(--accent)">Facilities</span></div>
+        <p class="footer-brand-text">Compromisso, qualidade e eficiência em cada serviço prestado. Desde 2007 cuidando da infraestrutura de empresas no Norte e Nordeste do Brasil.</p>
+      </div>
+      <div class="footer-col"><h5>Serviços</h5><ul><li><a href="#servicos">Limpeza & Conservação</a></li><li><a href="#servicos">Manutenção Predial</a></li><li><a href="#servicos">Portaria & Recepção</a></li><li><a href="#servicos">Copa & Cozinha</a></li><li><a href="#servicos">Operacional</a></li></ul></div>
+      <div class="footer-col"><h5>Empresa</h5><ul><li><a href="#sobre">Quem Somos</a></li><li><a href="#fundadores">Liderança</a></li><li><a href="#qualidade">Qualidade</a></li><li><a href="#atuacao">Atuação</a></li></ul></div>
+      <div class="footer-col"><h5>Contato</h5><ul><li><a href="#contato">Solicitar Orçamento</a></li><li><a href="#contato">WhatsApp</a></li><li><a href="#contato">E-mail</a></li><li><a href="#contato">Endereço</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Linhares Facilities · Todos os direitos reservados</span>
+      <span>Rua dos Gaviões, 15 · Ponta do Farol · São Luís – MA</span>
+    </div>
+  </footer>
+
+
+  <script>
+    function enviarWhatsApp() {
+      const empresa  = document.getElementById('f-empresa').value.trim();
+      const nome     = document.getElementById('f-nome').value.trim();
+      const tel      = document.getElementById('f-tel').value.trim();
+      const email    = document.getElementById('f-email').value.trim();
+      const servico  = document.getElementById('f-servico').value.trim();
+      const msg      = document.getElementById('f-msg').value.trim();
+
+      if (!nome || !tel) {
+        alert('Por favor, preencha ao menos seu Nome e Telefone.');
+        return;
+      }
+
+      let texto = '📋 *Solicitação de Orçamento — Linhares Facilities*\n\n';
+      if (empresa) texto += `🏢 *Empresa:* ${empresa}\n`;
+      texto += `👤 *Nome:* ${nome}\n`;
+      texto += `📱 *Telefone:* ${tel}\n`;
+      if (email) texto += `✉️ *E-mail:* ${email}\n`;
+      if (servico) texto += `🔧 *Serviço:* ${servico}\n`;
+      if (msg) texto += `\n💬 *Mensagem:*\n${msg}`;
+
+      const url = 'https://wa.me/5598984617312?text=' + encodeURIComponent(texto);
+      window.open(url, '_blank');
+    }
+
+    /* ---- Carrosséis dos Fundadores ---- */
+    (function(){
+      function initCarousel(wrapperId) {
+        const wrapper = document.getElementById(wrapperId);
+        if(!wrapper) return;
+        const track = wrapper.querySelector('.carousel-track');
+        const slides = track.querySelectorAll('.carousel-slide');
+        const dotsBox = wrapper.querySelector('.carousel-dots');
+        const prevBtn = wrapper.querySelector('.carousel-btn.prev');
+        const nextBtn = wrapper.querySelector('.carousel-btn.next');
+        let idx = 0;
+        const total = slides.length;
+        let autoTimer;
+
+        if (total <= 1) {
+          if (prevBtn) prevBtn.style.display = 'none';
+          if (nextBtn) nextBtn.style.display = 'none';
+          return;
+        }
+
+        /* criar dots */
+        slides.forEach(function(_,i){
+          const d = document.createElement('button');
+          d.className = 'carousel-dot' + (i===0?' active':'');
+          d.setAttribute('aria-label','Slide '+(i+1));
+          d.addEventListener('click', function(){ goTo(i); });
+          dotsBox.appendChild(d);
+        });
+
+        function goTo(n){
+          idx = (n + total) % total;
+          track.style.transform = 'translateX(-' + (idx * 100) + '%)';
+          var dots = dotsBox.querySelectorAll('.carousel-dot');
+          dots.forEach(function(d,i){ d.classList.toggle('active', i===idx); });
+          resetAuto();
+        }
+
+        prevBtn.addEventListener('click', function(){ goTo(idx - 1); });
+        nextBtn.addEventListener('click', function(){ goTo(idx + 1); });
+
+        function resetAuto(){ clearInterval(autoTimer); autoTimer = setInterval(function(){ goTo(idx+1); }, 5000); }
+        resetAuto();
+
+        /* pause on hover */
+        wrapper.addEventListener('mouseenter', function(){ clearInterval(autoTimer); });
+        wrapper.addEventListener('mouseleave', function(){ resetAuto(); });
+
+        /* swipe */
+        var sx = 0;
+        wrapper.addEventListener('touchstart', function(e){ sx = e.touches[0].clientX; }, {passive:true});
+        wrapper.addEventListener('touchend', function(e){
+          var diff = sx - e.changedTouches[0].clientX;
+          if(Math.abs(diff) > 40){ diff > 0 ? goTo(idx+1) : goTo(idx-1); }
+        }, {passive:true});
+      }
+
+      initCarousel('carouselPai');
+      initCarousel('carouselFilho');
+    })();
+  </script>
+</body>
+</html>
