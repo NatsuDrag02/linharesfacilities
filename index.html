@@ -1284,10 +1284,18 @@
 
       .fundador-card {
         min-height: auto;
+        height: auto;
       }
 
       .carousel-wrapper {
-        height: 350px;
+        height: 400px; /* Fixed height for image area on mobile */
+        flex: none;
+      }
+
+      .fundador-body {
+        height: auto; /* Let text expand naturally */
+        flex: none;
+        padding: 24px 20px;
       }
     }
   </style>
