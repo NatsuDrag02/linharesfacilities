@@ -10,17 +10,20 @@
     rel="stylesheet" />
   <style>
     :root {
-      --navy: #282828;
-      --blue: #282828;
-      --accent: #f08702;
-      --accent-light: #f7a034;
+      --navy: #1B2A4A;
+      --navy-light: #243557;
+      --navy-dark: #111D35;
+      --blue: #1B2A4A;
+      --accent: #E8872B;
+      --accent-light: #F5B731;
+      --accent-hover: #F09A3A;
       --white: #FFFFFF;
-      --off: #f3f3f3;
+      --off: #F4F6FA;
       --gray: #6B7B8D;
-      --light-gray: #E8ECF0;
-      --text: #282828;
+      --light-gray: #E0E5ED;
+      --text: #1B2A4A;
       --pending-bg: #FFF8EC;
-      --pending-border: #E07B2A;
+      --pending-border: #E8872B;
       --pending-text: #7A3E0A;
     }
 
@@ -107,9 +110,18 @@
       justify-content: space-between;
       padding: 0 60px;
       height: 78px;
-      background: rgba(40, 40, 40, 0.97);
+      background: rgba(27, 42, 74, 0.97);
       backdrop-filter: blur(16px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .nav-logo {
+      height: 48px;
+      width: auto;
+      display: block;
+      border-radius: 6px;
+      background: #fff;
+      padding: 4px 10px;
     }
 
     .nav-brand {
@@ -174,7 +186,7 @@
     .hero-bg {
       position: absolute;
       inset: 0;
-      background: linear-gradient(160deg, #282828 0%, #353535 50%, #454545 100%);
+      background: linear-gradient(160deg, #111D35 0%, #1B2A4A 50%, #243557 100%);
     }
 
     .hero-bg::before {
@@ -185,7 +197,7 @@
       width: 600px;
       height: 600px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(240, 135, 2, 0.18) 0%, transparent 65%);
+      background: radial-gradient(circle, rgba(232, 135, 43, 0.2) 0%, transparent 65%);
     }
 
     .hero-grid {
@@ -458,7 +470,7 @@
     /* FUNDADORES */
     #fundadores {
       padding: 120px 60px;
-      background: var(--navy);
+      background: linear-gradient(180deg, var(--navy-dark) 0%, var(--navy) 100%);
     }
 
     .fundadores-header {
@@ -697,7 +709,7 @@
     /* QUALIDADE */
     #qualidade {
       padding: 120px 60px;
-      background: var(--navy);
+      background: linear-gradient(180deg, var(--navy) 0%, var(--navy-dark) 100%);
       position: relative;
       overflow: hidden;
     }
@@ -710,7 +722,7 @@
       width: 600px;
       height: 600px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(240, 135, 2, 0.1) 0%, transparent 65%);
+      background: radial-gradient(circle, rgba(245, 183, 49, 0.1) 0%, transparent 65%);
       pointer-events: none;
     }
 
@@ -971,7 +983,7 @@
     /* CONTATO */
     #contato {
       padding: 120px 60px;
-      background: var(--navy);
+      background: linear-gradient(180deg, var(--navy) 0%, var(--navy-dark) 100%);
       position: relative;
       overflow: hidden;
     }
@@ -984,7 +996,7 @@
       width: 500px;
       height: 500px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(240, 135, 2, 0.1) 0%, transparent 65%);
+      background: radial-gradient(circle, rgba(232, 135, 43, 0.12) 0%, transparent 65%);
     }
 
     .contato-grid {
@@ -1135,7 +1147,7 @@
 
     /* FOOTER */
     footer {
-      background: #060E18;
+      background: #0D1726;
       padding: 60px 60px 30px;
       border-top: 1px solid rgba(255, 255, 255, 0.06);
     }
@@ -1305,7 +1317,7 @@
 
   <nav id="nav">
     <div class="nav-brand">
-      <div class="nav-name">Linhares <span>Facilities</span></div>
+      <a href="#hero"><img src="images/logo.jpg" alt="Linhares Facilities" class="nav-logo"></a>
     </div>
     <ul>
       <li><a href="#sobre">Sobre</a></li>
