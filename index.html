@@ -662,9 +662,6 @@
       align-items: center;
       justify-content: center;
       font-size: 1.5rem;
-      margin-bottom: 20px;
-    }
-
     .serv-card h3 {
       font-size: 0.95rem;
       font-weight: 700;
@@ -1151,6 +1148,34 @@
       .footer-bottom { flex-direction: row; justify-content: space-between; text-align: left; }
     }
 
+    /* MAP STYLES */
+    .map-container {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      max-width: 600px;
+      margin: 0 auto;
+      position: relative;
+      transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .map-img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 20px;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.2);
+      filter: saturate(1.1);
+      transition: all 0.5s ease;
+    }
+    .map-container:hover {
+      transform: translateY(-10px) scale(1.02);
+    }
+    .map-container:hover .map-img {
+      box-shadow: 0 35px 60px -15px rgba(240, 135, 2, 0.2);
+    }
+
+    /* Map Styling Cleaned Up */
+
     @media (min-width: 1024px) {
       #nav {
         padding: 0 60px;
@@ -1583,21 +1608,8 @@
         </div>
       </div>
       <div class="atuacao-right">
-        <div class="atuacao-stat">
-          <div class="num">+19</div>
-          <div class="lbl">Anos de Atuação</div>
-        </div>
-        <div class="atuacao-stat">
-          <div class="num">6</div>
-          <div class="lbl">Estados</div>
-        </div>
-        <div class="atuacao-stat">
-          <div class="num">+400</div>
-          <div class="lbl">Colaboradores</div>
-        </div>
-        <div class="atuacao-stat">
-          <div class="num">8+</div>
-          <div class="lbl">Serviços</div>
+        <div class="map-container">
+          <img src="images/BRAZIL 3.png" alt="Mapa de Atuação - Linhares Facilities" class="map-img">
         </div>
       </div>
     </div>
