@@ -786,6 +786,12 @@
       background: var(--accent);
     }
 
+    .atuacao-inner {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 40px;
+      align-items: center;
+    }
 
     .atuacao-left .section-h2 { color: #fff; }
     .atuacao-left .section-eyebrow { color: rgba(255, 255, 255, 0.7); }
@@ -1142,16 +1148,6 @@
       .footer-bottom { flex-direction: row; justify-content: space-between; text-align: left; }
     }
 
-    /* MAP STYLES */
-    .atuacao-inner {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 40px;
-      align-items: center;
-      max-width: 1300px;
-      margin: 0 auto;
-    }
-
     .map-container {
       width: 100%;
       display: flex;
@@ -1268,6 +1264,7 @@
       .cert-card { padding: 30px; }
 
       .atuacao-inner { grid-template-columns: 1fr 1fr; gap: 80px; }
+      .map-container { margin: 0 0 0 auto; } /* Align map to the right edge on desktop */
       .atuacao-stat .num { font-size: clamp(2rem, 5vw, 2.4rem); }
 
       .depoimentos-grid { grid-template-columns: repeat(3, 1fr); }
