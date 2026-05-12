@@ -786,12 +786,6 @@
       background: var(--accent);
     }
 
-    .atuacao-inner {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 40px;
-      align-items: center;
-    }
 
     .atuacao-left .section-h2 { color: #fff; }
     .atuacao-left .section-eyebrow { color: rgba(255, 255, 255, 0.7); }
@@ -1149,6 +1143,15 @@
     }
 
     /* MAP STYLES */
+    .atuacao-inner {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 40px;
+      align-items: center;
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+
     .map-container {
       width: 100%;
       display: flex;
@@ -1156,7 +1159,6 @@
       max-width: 600px;
       margin: 0 auto;
       position: relative;
-      padding: 0 10px;
       transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     }
     .map-img {
