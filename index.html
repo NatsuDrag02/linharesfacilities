@@ -1303,19 +1303,24 @@
       pointer-events: none;
     }
 
-    .video-container-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 40px;
+    .video-container-centered {
+      display: flex;
+      flex-direction: column;
       align-items: center;
-      max-width: 1200px;
+      max-width: 1000px;
       margin: 0 auto;
       position: relative;
       z-index: 2;
     }
 
-    .player-column {
+    .video-header {
       width: 100%;
+      text-align: center;
+    }
+
+    .player-column-centered {
+      width: 100%;
+      max-width: 960px;
       display: flex;
       flex-direction: column;
       gap: 16px;
@@ -1594,193 +1599,6 @@
       -webkit-appearance: none;
       margin-top: -4px;
     }
-
-    /* Details Column */
-    .details-column {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-
-    .video-lead-desc {
-      font-size: 0.95rem;
-      color: rgba(255, 255, 255, 0.7);
-      line-height: 1.85;
-    }
-
-    .video-specs-badges {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin: 8px 0;
-    }
-
-    .spec-badge {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      padding: 8px 16px;
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .spec-icon {
-      font-size: 0.9rem;
-    }
-
-    .spec-text {
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: rgba(255, 255, 255, 0.8);
-    }
-
-    /* Switch Glow Button */
-    .switch-glow {
-      position: relative;
-      display: inline-block;
-      width: 34px;
-      height: 20px;
-      margin-left: 4px;
-    }
-
-    .switch-glow input {
-      opacity: 0;
-      width: 0;
-      height: 0;
-    }
-
-    .switch-slider {
-      position: absolute;
-      cursor: pointer;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-color: rgba(255, 255, 255, 0.2);
-      transition: .4s;
-      border-radius: 34px;
-    }
-
-    .switch-slider:before {
-      position: absolute;
-      content: "";
-      height: 14px;
-      width: 14px;
-      left: 3px;
-      bottom: 3px;
-      background-color: white;
-      transition: .4s;
-      border-radius: 50%;
-    }
-
-    .switch-glow input:checked + .switch-slider {
-      background-color: var(--accent);
-    }
-
-    .switch-glow input:checked + .switch-slider:before {
-      transform: translateX(14px);
-    }
-
-    /* Chapters Box */
-    .video-chapters-container {
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      border-radius: 12px;
-      padding: 24px;
-      margin-top: 10px;
-    }
-
-    .chapters-title {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 0.88rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--accent-light);
-      margin-bottom: 16px;
-      padding-bottom: 12px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    }
-
-    .chapters-list {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .chapter-item {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      padding: 12px 16px;
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid rgba(255, 255, 255, 0.04);
-      border-radius: 8px;
-      cursor: pointer;
-      transition: all 0.25s ease;
-    }
-
-    .chapter-item:hover {
-      background: rgba(255, 255, 255, 0.07);
-      border-color: rgba(232, 135, 43, 0.3);
-      transform: translateX(6px);
-    }
-
-    .chapter-item.active {
-      background: rgba(232, 135, 43, 0.12);
-      border-color: var(--accent);
-      color: #fff;
-    }
-
-    .chapter-number {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 0.85rem;
-      font-weight: 700;
-      color: var(--accent);
-      opacity: 0.8;
-      width: 24px;
-    }
-
-    .chapter-item.active .chapter-number {
-      color: var(--accent-light);
-    }
-
-    .chapter-info {
-      flex-grow: 1;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .chapter-name {
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: rgba(255, 255, 255, 0.9);
-    }
-
-    .chapter-item.active .chapter-name {
-      color: #fff;
-      font-weight: 700;
-    }
-
-    .chapter-time {
-      font-size: 0.75rem;
-      color: rgba(255, 255, 255, 0.45);
-      font-family: monospace;
-    }
-
-    .chapter-item.active .chapter-time {
-      color: var(--accent-light);
-    }
-
-    /* Responsive grid changes */
-    @media (min-width: 1024px) {
-      .video-container-grid {
-        grid-template-columns: 1.3fr 1fr;
-        gap: 60px;
-      }
-    }
   </style>
 </head>
 
@@ -1891,10 +1709,16 @@
 
   <!-- VÍDEO INSTITUCIONAL -->
   <section id="video-institucional">
-    <div class="video-container-grid">
+    <div class="video-container-centered">
       
-      <!-- Lado Esquerdo: Player de Vídeo -->
-      <div class="player-column">
+      <!-- Cabeçalho do Vídeo -->
+      <div class="video-header">
+        <p class="section-eyebrow" style="color: var(--accent-light); text-align: center;">Apresentação Digital</p>
+        <h2 class="section-h2" style="color: #fff; text-align: center; margin-bottom: 30px;">Conheça a <em style="color: var(--accent-light);">Linhares Facilities</em> em vídeo</h2>
+      </div>
+
+      <!-- Player de Vídeo -->
+      <div class="player-column-centered">
         <div class="video-player-wrapper" id="videoWrapper">
           <!-- Ambient Glow (Soft lighting behind the video) -->
           <div class="ambient-glow" id="ambientGlow"></div>
@@ -1908,10 +1732,9 @@
                 <path d="M8 5v14l11-7z" fill="currentColor"/>
               </svg>
             </button>
-            <div class="video-cover-info">
+            <div class="video-cover-info" style="text-align: center; left: 0; right: 0; bottom: 30px;">
               <span class="badge-live">INSTITUCIONAL</span>
-              <h3>Linhares Facilities em Ação</h3>
-              <p>Conheça nossa infraestrutura e soluções completas</p>
+              <h3 style="text-align: center;">Linhares Facilities em Ação</h3>
             </div>
           </div>
           
@@ -1956,79 +1779,7 @@
           </button>
         </div>
       </div>
-      
-      <!-- Lado Direito: Detalhes e Navegação Interativa -->
-      <div class="details-column">
-        <p class="section-eyebrow" style="color: var(--accent-light);">Apresentação Digital</p>
-        <h2 class="section-h2" style="color: #fff;">Conheça a <em style="color: var(--accent-light);">Linhares Facilities</em> em vídeo</h2>
-        <p class="video-lead-desc">
-          Assista à nossa apresentação institucional e veja como lideramos o mercado com soluções inovadoras de facilities, 
-          assegurando excelência operacional e a plena satisfação de nossos parceiros comerciais.
-        </p>
-        
-        <!-- Badges de Especificações -->
-        <div class="video-specs-badges">
-          <div class="spec-badge">
-            <span class="spec-icon">🕒</span>
-            <span class="spec-text">Duração: ~3 min</span>
-          </div>
-          <div class="spec-badge">
-            <span class="spec-icon">📺</span>
-            <span class="spec-text">Resolução: 1080p</span>
-          </div>
-          <div class="spec-badge">
-            <span class="spec-icon">🌟</span>
-            <span class="spec-text">Glow Mode:</span>
-            <label class="switch-glow">
-              <input type="checkbox" id="glowToggle" checked onchange="toggleAmbientGlow(this.checked)">
-              <span class="switch-slider"></span>
-            </label>
-          </div>
-        </div>
-        
-        <!-- Capítulos Interativos -->
-        <div class="video-chapters-container">
-          <h4 class="chapters-title">Navegue Pelos Capítulos</h4>
-          <div class="chapters-list">
-            <div class="chapter-item active" onclick="pularParaTempo(0, this)">
-              <div class="chapter-number">01</div>
-              <div class="chapter-info">
-                <span class="chapter-name">Abertura e Quem Somos</span>
-                <span class="chapter-time">0:00</span>
-              </div>
-            </div>
-            <div class="chapter-item" onclick="pularParaTempo(20, this)">
-              <div class="chapter-number">02</div>
-              <div class="chapter-info">
-                <span class="chapter-name">Infraestrutura e Gestão</span>
-                <span class="chapter-time">0:20</span>
-              </div>
-            </div>
-            <div class="chapter-item" onclick="pularParaTempo(50, this)">
-              <div class="chapter-number">03</div>
-              <div class="chapter-info">
-                <span class="chapter-name">Nossos Serviços em Facilities</span>
-                <span class="chapter-time">0:50</span>
-              </div>
-            </div>
-            <div class="chapter-item" onclick="pularParaTempo(75, this)">
-              <div class="chapter-number">04</div>
-              <div class="chapter-info">
-                <span class="chapter-name">Padrão de Qualidade e Certificados</span>
-                <span class="chapter-time">1:15</span>
-              </div>
-            </div>
-            <div class="chapter-item" onclick="pularParaTempo(105, this)">
-              <div class="chapter-number">05</div>
-              <div class="chapter-info">
-                <span class="chapter-name">Parceria e Contato</span>
-                <span class="chapter-time">1:45</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-      </div>
+
     </div>
   </section>
 
@@ -2573,9 +2324,6 @@
         
         // Format times
         document.getElementById('timeDisplay').textContent = formatTime(current) + ' / ' + formatTime(duration);
-        
-        // Highlight active chapter
-        highlightActiveChapter(current);
       }
     }
 
@@ -2629,74 +2377,24 @@
     }
 
     function toggleFullscreen() {
-      const wrapper = document.getElementById('videoWrapper');
-      if (!document.fullscreenElement) {
-        wrapper.requestFullscreen().catch(err => {
-          console.error(`Erro ao ativar tela cheia: ${err.message}`);
-        });
+      const iframe = document.querySelector('#videoWrapper iframe');
+      if (!iframe) return;
+      
+      if (!document.fullscreenElement && !document.webkitFullscreenElement) {
+        if (iframe.requestFullscreen) {
+          iframe.requestFullscreen();
+        } else if (iframe.webkitRequestFullscreen) { /* Safari */
+          iframe.webkitRequestFullscreen();
+        } else if (iframe.msRequestFullscreen) { /* IE11 */
+          iframe.msRequestFullscreen();
+        }
       } else {
-        document.exitFullscreen();
-      }
-    }
-
-    function toggleAmbientGlow(checked) {
-      const glow = document.getElementById('ambientGlow');
-      if (checked) {
-        glow.style.opacity = '0.18';
-      } else {
-        glow.style.opacity = '0';
-      }
-    }
-
-    function pularParaTempo(seconds, element) {
-      // If the player isn't loaded yet, load it first!
-      if (!ytPlayer) {
-        iniciarVideo();
-        // Wait a short moment for player initialization
-        setTimeout(() => {
-          if (ytPlayer && ytPlayer.seekTo) {
-            ytPlayer.seekTo(seconds, true);
-            ytPlayer.playVideo();
-          }
-        }, 1500);
-      } else {
-        if (ytPlayer.seekTo) {
-          ytPlayer.seekTo(seconds, true);
-          ytPlayer.playVideo();
+        if (document.exitFullscreen) {
+          document.exitFullscreen();
+        } else if (document.webkitExitFullscreen) {
+          document.webkitExitFullscreen();
         }
       }
-      
-      // Update UI active class manually
-      const items = document.querySelectorAll('.chapter-item');
-      items.forEach(item => item.classList.remove('active'));
-      element.classList.add('active');
-    }
-
-    function highlightActiveChapter(current) {
-      const chapters = [
-        { time: 0, index: 0 },
-        { time: 20, index: 1 },
-        { time: 50, index: 2 },
-        { time: 75, index: 3 },
-        { time: 105, index: 4 }
-      ];
-      
-      let activeIndex = 0;
-      for (let i = chapters.length - 1; i >= 0; i--) {
-        if (current >= chapters[i].time) {
-          activeIndex = chapters[i].index;
-          break;
-        }
-      }
-      
-      const items = document.querySelectorAll('.chapter-item');
-      items.forEach((item, idx) => {
-        if (idx === activeIndex) {
-          item.classList.add('active');
-        } else {
-          item.classList.remove('active');
-        }
-      });
     }
   </script>
 </body>
