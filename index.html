@@ -1880,22 +1880,13 @@
           <!-- Ambient Glow (Soft lighting behind the video) -->
           <div class="ambient-glow" id="ambientGlow"></div>
 
-          <!-- Custom Video Cover (Poster) -->
-          <div class="video-cover" id="videoCover" onclick="iniciarVideo()">
-            <div class="video-cover-overlay"></div>
-            <div class="play-btn-glow"></div>
-            <button class="custom-play-btn" aria-label="Reproduzir vídeo">
-              <svg viewBox="0 0 24 24" fill="none" class="play-icon">
-                <path d="M8 5v14l11-7z" fill="currentColor" />
-              </svg>
-            </button>
-            <div class="video-cover-info" style="text-align: center; left: 0; right: 0; bottom: 30px;">
-              <h3 style="text-align: center;">Linhares Facilities em Ação</h3>
-            </div>
-          </div>
-
-          <!-- Youtube Player Iframe Placeholder -->
-          <div id="youtubePlayer"></div>
+          <!-- Native YouTube Player -->
+          <iframe 
+            src="https://www.youtube.com/embed/zhOPnJrG0Ys?rel=0&modestbranding=1&playsinline=1" 
+            title="Linhares Facilities em Ação" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            allowfullscreen>
+          </iframe>
         </div>
       </div>
 
@@ -2442,36 +2433,7 @@
       initCarousel('carouselFilho');
     })();
 
-    /* ---- YouTube Player API Integration ---- */
-
-    // Load YouTube API asynchronously
-    var tag = document.createElement('script');
-    tag.src = "https://www.youtube.com/iframe_api";
-    var firstScriptTag = document.getElementsByTagName('script')[0];
-    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-    var ytPlayer;
-
-    function iniciarVideo() {
-      const cover = document.getElementById('videoCover');
-      cover.style.opacity = '0';
-      setTimeout(() => cover.style.display = 'none', 600);
-
-      // Initialize YouTube player with native controls enabled
-      ytPlayer = new YT.Player('youtubePlayer', {
-        height: '100%',
-        width: '100%',
-        videoId: 'zhOPnJrG0Ys',
-        playerVars: {
-          'playsinline': 1,
-          'controls': 1, // Enable native YouTube player controls
-          'rel': 0,
-          'showinfo': 0,
-          'modestbranding': 1,
-          'autoplay': 1 // start playing immediately
-        }
-      });
-    }
+    /* ---- YouTube Player API Integration - Removido para usar iframe direto ---- */
 
     // Controle do Header Translúcido, Efeito Shrink, Recuperação de Cor e Ocultação Dinâmica ao Rolar a Página
     let lastScrollY = window.scrollY;
