@@ -120,19 +120,35 @@
       flex-wrap: wrap;
       padding: 0 20px;
       height: 80px;
-      background: #fff;
-      backdrop-filter: blur(16px);
+      background: #ffffff;
       border-bottom: 1px solid var(--light-gray);
       box-shadow: 0 2px 12px rgba(27, 42, 74, 0.07);
+      transition: all 0.3s ease;
+    }
+
+    #nav.nav-scrolled {
+      background: rgba(255, 255, 255, 0.8) !important;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      height: 70px;
+      box-shadow: 0 4px 20px rgba(27, 42, 74, 0.1);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    #nav.nav-hidden {
+      transform: translateY(-100%);
     }
 
     .nav-logo {
-      height: 56px;
+      height: 48px;
       width: auto;
       display: block;
-      transform: scale(1.35);
-      transform-origin: left center;
       mix-blend-mode: multiply;
+      transition: all 0.3s ease;
+    }
+
+    #nav.nav-scrolled .nav-logo {
+      height: 42px;
     }
 
     .nav-brand {
@@ -1240,8 +1256,20 @@
         height: 90px;
       }
 
+      #nav.nav-scrolled {
+        height: 80px;
+      }
+
       .nav-logo {
-        height: 64px;
+        height: 54px;
+      }
+
+      #nav.nav-scrolled .nav-logo {
+        height: 48px;
+      }
+
+      #video-institucional {
+        padding-top: 150px;
       }
 
       .hero-content {
@@ -1349,8 +1377,20 @@
         height: 100px;
       }
 
+      #nav.nav-scrolled {
+        height: 85px;
+      }
+
       .nav-logo {
-        height: 72px;
+        height: 60px;
+      }
+
+      #nav.nav-scrolled .nav-logo {
+        height: 52px;
+      }
+
+      #video-institucional {
+        padding-top: 170px;
       }
 
       .hamburger {
@@ -1575,7 +1615,7 @@
 
     /* ===== VIDEO INSTITUCIONAL SECTION ===== */
     #video-institucional {
-      padding: 120px 20px 60px;
+      padding: 130px 20px 60px;
       background: linear-gradient(135deg, var(--navy-dark) 0%, #15223c 100%);
       position: relative;
       overflow: hidden;
@@ -1817,7 +1857,7 @@
   </nav>
 
   <!-- VÍDEO INSTITUCIONAL -->
-  <section id="video-institucional" style="padding-top: 100px;">
+  <section id="video-institucional">
     <div class="video-container-centered">
 
       <!-- Cabeçalho do Vídeo -->
@@ -2425,6 +2465,43 @@
         }
       });
     }
+
+    // Controle do Header Translúcido, Efeito Shrink e Ocultação Dinâmica ao Rolar a Página
+    let lastScrollY = window.scrollY;
+
+    window.addEventListener('scroll', function () {
+      const nav = document.getElementById('nav');
+      const currentScrollY = window.scrollY;
+
+      // 1. Transparência e tamanho reduzido ao rolar a página
+      if (currentScrollY > 20) {
+        nav.classList.add('nav-scrolled');
+      } else {
+        nav.classList.remove('nav-scrolled');
+      }
+
+      // Evita esconder o header se o menu mobile estiver aberto
+      if (nav.classList.contains('nav-open')) {
+        lastScrollY = currentScrollY;
+        return;
+      }
+
+      // 2. Esconde ao descer e aparece imediatamente ao subir
+      if (currentScrollY > 150) {
+        if (currentScrollY > lastScrollY) {
+          // Rolando para baixo: esconde
+          nav.classList.add('nav-hidden');
+        } else {
+          // Rolando para cima: mostra
+          nav.classList.remove('nav-hidden');
+        }
+      } else {
+        // Bem no topo da página: sempre mostra
+        nav.classList.remove('nav-hidden');
+      }
+
+      lastScrollY = currentScrollY;
+    });
   </script>
 </body>
 
