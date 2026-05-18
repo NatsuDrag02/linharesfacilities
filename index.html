@@ -47,7 +47,16 @@
     }
 
     /* Prevent text/container overflow globally */
-    p, h1, h2, h3, h4, h5, h6, span, li, a {
+    p,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    span,
+    li,
+    a {
       overflow-wrap: break-word;
       word-wrap: break-word;
       word-break: break-word;
@@ -114,7 +123,7 @@
       background: #fff;
       backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--light-gray);
-      box-shadow: 0 2px 12px rgba(27,42,74,0.07);
+      box-shadow: 0 2px 12px rgba(27, 42, 74, 0.07);
     }
 
     .nav-logo {
@@ -142,6 +151,7 @@
       padding: 8px;
       z-index: 1001;
     }
+
     .hamburger span {
       width: 24px;
       height: 2.5px;
@@ -149,9 +159,18 @@
       border-radius: 2px;
       transition: all 0.3s;
     }
-    #nav.nav-open .hamburger span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
-    #nav.nav-open .hamburger span:nth-child(2) { opacity: 0; }
-    #nav.nav-open .hamburger span:nth-child(3) { transform: rotate(-45deg) translate(6px,-6px); }
+
+    #nav.nav-open .hamburger span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    #nav.nav-open .hamburger span:nth-child(2) {
+      opacity: 0;
+    }
+
+    #nav.nav-open .hamburger span:nth-child(3) {
+      transform: rotate(-45deg) translate(6px, -6px);
+    }
 
     nav ul {
       list-style: none;
@@ -163,9 +182,14 @@
       gap: 0;
       border-top: 1px solid var(--light-gray);
     }
-    #nav.nav-open ul { display: flex; }
 
-    nav ul li { width: 100%; }
+    #nav.nav-open ul {
+      display: flex;
+    }
+
+    nav ul li {
+      width: 100%;
+    }
 
     nav ul a {
       text-decoration: none;
@@ -360,8 +384,13 @@
       border-bottom: 1px solid rgba(255, 255, 255, 0.15);
     }
 
-    .stat:nth-child(2n) { border-right: none; }
-    .stat:nth-last-child(-n+2) { border-bottom: none; }
+    .stat:nth-child(2n) {
+      border-right: none;
+    }
+
+    .stat:nth-last-child(-n+2) {
+      border-bottom: none;
+    }
 
     .stat-num {
       font-family: 'Montserrat', sans-serif;
@@ -566,8 +595,13 @@
       transform: translateY(-50%) scale(1.1);
     }
 
-    .carousel-btn.prev { left: 8px; }
-    .carousel-btn.next { right: 8px; }
+    .carousel-btn.prev {
+      left: 8px;
+    }
+
+    .carousel-btn.next {
+      right: 8px;
+    }
 
     .carousel-dots {
       display: flex;
@@ -796,10 +830,22 @@
       align-items: center;
     }
 
-    .atuacao-left { text-align: center; }
-    .atuacao-left .section-h2 { color: #fff; }
-    .atuacao-left .section-eyebrow { color: rgba(255, 255, 255, 0.7); }
-    .atuacao-left .section-lead { color: rgba(255, 255, 255, 0.75); margin-bottom: 0; }
+    .atuacao-left {
+      text-align: center;
+    }
+
+    .atuacao-left .section-h2 {
+      color: #fff;
+    }
+
+    .atuacao-left .section-eyebrow {
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .atuacao-left .section-lead {
+      color: rgba(255, 255, 255, 0.75);
+      margin-bottom: 0;
+    }
 
     .estados-list {
       margin-top: 32px;
@@ -820,7 +866,9 @@
       transition: background 0.2s;
     }
 
-    .estado:hover { background: rgba(255, 255, 255, 0.2); }
+    .estado:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
 
     .estado-dot {
       width: 8px;
@@ -873,7 +921,9 @@
       background: var(--off);
     }
 
-    .depoimentos-header { margin-bottom: 40px; }
+    .depoimentos-header {
+      margin-bottom: 40px;
+    }
 
     .depoimentos-grid {
       display: grid;
@@ -903,8 +953,16 @@
       margin-bottom: 8px;
     }
 
-    .dep-author { font-weight: 700; font-size: 0.88rem; color: var(--navy); }
-    .dep-company { font-size: 0.78rem; color: var(--gray); }
+    .dep-author {
+      font-weight: 700;
+      font-size: 0.88rem;
+      color: var(--navy);
+    }
+
+    .dep-company {
+      font-size: 0.78rem;
+      color: var(--gray);
+    }
 
     /* CLIENTES — mobile-first */
     #clientes {
@@ -913,8 +971,13 @@
       border-top: 1px solid var(--light-gray);
     }
 
-    .clientes-inner { text-align: center; }
-    .clientes-inner .section-eyebrow { margin-bottom: 32px; }
+    .clientes-inner {
+      text-align: center;
+    }
+
+    .clientes-inner .section-eyebrow {
+      margin-bottom: 32px;
+    }
 
     .clientes-logos {
       display: flex;
@@ -969,13 +1032,30 @@
       z-index: 1;
     }
 
-    .contato-left .section-h2 { color: #fff; }
-    .contato-left .section-eyebrow { color: var(--accent-light); }
-    .contato-left .section-lead { color: rgba(255, 255, 255, 0.6); margin-bottom: 32px; }
+    .contato-left .section-h2 {
+      color: #fff;
+    }
 
-    .contact-items { display: flex; flex-direction: column; gap: 20px; }
+    .contato-left .section-eyebrow {
+      color: var(--accent-light);
+    }
 
-    .contact-item { display: flex; gap: 16px; align-items: flex-start; }
+    .contato-left .section-lead {
+      color: rgba(255, 255, 255, 0.6);
+      margin-bottom: 32px;
+    }
+
+    .contact-items {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .contact-item {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
 
     .contact-icon {
       width: 42px;
@@ -998,7 +1078,11 @@
       margin-bottom: 4px;
     }
 
-    .contact-value { font-size: 0.92rem; color: #fff; font-weight: 500; }
+    .contact-value {
+      font-size: 0.92rem;
+      color: #fff;
+      font-weight: 500;
+    }
 
     .form-panel {
       background: rgba(255, 255, 255, 0.05);
@@ -1014,7 +1098,9 @@
       margin-bottom: 24px;
     }
 
-    .f-group { margin-bottom: 16px; }
+    .f-group {
+      margin-bottom: 16px;
+    }
 
     .f-group label {
       display: block;
@@ -1035,19 +1121,27 @@
       border-radius: 6px;
       padding: 13px 16px;
       color: #fff;
-      font-size: 16px; /* Prevents iOS zoom */
+      font-size: 16px;
+      /* Prevents iOS zoom */
       font-family: 'IBM Plex Sans', sans-serif;
       outline: none;
       transition: border-color 0.2s;
     }
 
-    .f-group select option { background: var(--navy); }
+    .f-group select option {
+      background: var(--navy);
+    }
 
     .f-group input:focus,
     .f-group select:focus,
-    .f-group textarea:focus { border-color: var(--accent); }
+    .f-group textarea:focus {
+      border-color: var(--accent);
+    }
 
-    .f-group textarea { height: 100px; resize: vertical; }
+    .f-group textarea {
+      height: 100px;
+      resize: vertical;
+    }
 
     .f-row {
       display: grid;
@@ -1108,8 +1202,13 @@
       margin-bottom: 14px;
     }
 
-    .footer-col ul { list-style: none; }
-    .footer-col ul li { margin-bottom: 10px; }
+    .footer-col ul {
+      list-style: none;
+    }
+
+    .footer-col ul li {
+      margin-bottom: 10px;
+    }
 
     .footer-col ul li a {
       text-decoration: none;
@@ -1118,7 +1217,9 @@
       transition: color 0.2s;
     }
 
-    .footer-col ul li a:hover { color: rgba(255, 255, 255, 0.8); }
+    .footer-col ul li a:hover {
+      color: rgba(255, 255, 255, 0.8);
+    }
 
     .footer-bottom {
       padding-top: 24px;
@@ -1138,21 +1239,76 @@
         padding: 0 40px;
         height: 90px;
       }
-      .nav-logo { height: 64px; }
-      .hero-content { padding: 50px 40px 80px; }
-      .hero-h1 { font-size: 2.8rem; }
-      #stats { padding: 0 40px; }
-      .stat { padding: 28px 24px; }
-      .stat-num { font-size: 2rem; }
-      #sobre, #servicos, #depoimentos, #clientes { padding: 80px 40px; }
-      #fundadores, #qualidade, #contato, #atuacao { padding: 80px 40px; }
-      .servicos-grid { grid-template-columns: repeat(2, 1fr); }
-      .estados-list { grid-template-columns: 1fr 1fr; }
-      .f-row { grid-template-columns: 1fr 1fr; gap: 16px; }
-      .form-panel { padding: 36px 32px; }
-      footer { padding: 48px 40px 24px; }
-      .footer-top { grid-template-columns: 1fr 1fr; gap: 40px; }
-      .footer-bottom { flex-direction: row; justify-content: space-between; text-align: left; }
+
+      .nav-logo {
+        height: 64px;
+      }
+
+      .hero-content {
+        padding: 50px 40px 80px;
+      }
+
+      .hero-h1 {
+        font-size: 2.8rem;
+      }
+
+      #stats {
+        padding: 0 40px;
+      }
+
+      .stat {
+        padding: 28px 24px;
+      }
+
+      .stat-num {
+        font-size: 2rem;
+      }
+
+      #sobre,
+      #servicos,
+      #depoimentos,
+      #clientes {
+        padding: 80px 40px;
+      }
+
+      #fundadores,
+      #qualidade,
+      #contato,
+      #atuacao {
+        padding: 80px 40px;
+      }
+
+      .servicos-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .estados-list {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .f-row {
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+
+      .form-panel {
+        padding: 36px 32px;
+      }
+
+      footer {
+        padding: 48px 40px 24px;
+      }
+
+      .footer-top {
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+      }
+
+      .footer-bottom {
+        flex-direction: row;
+        justify-content: space-between;
+        text-align: left;
+      }
     }
 
     .map-container {
@@ -1164,6 +1320,7 @@
       position: relative;
       transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     }
+
     .map-img {
       width: 100%;
       height: auto;
@@ -1173,10 +1330,12 @@
       filter: saturate(1.05);
       transition: all 0.5s ease;
     }
+
     @media (hover: hover) {
       .map-container:hover {
         transform: translateY(-10px) scale(1.01);
       }
+
       .map-container:hover .map-img {
         box-shadow: 0 30px 60px -12px rgba(240, 135, 2, 0.25);
       }
@@ -1189,8 +1348,15 @@
         padding: 0 60px;
         height: 100px;
       }
-      .nav-logo { height: 72px; }
-      .hamburger { display: none; }
+
+      .nav-logo {
+        height: 72px;
+      }
+
+      .hamburger {
+        display: none;
+      }
+
       nav ul {
         display: flex;
         flex-direction: row;
@@ -1200,14 +1366,23 @@
         border-top: none;
         background: transparent;
       }
-      nav ul li { width: auto; }
+
+      nav ul li {
+        width: auto;
+      }
+
       nav ul a {
         font-size: 0.82rem;
         color: var(--navy);
         padding: 0;
         font-weight: 500;
       }
-      nav ul a:hover { background: none; color: var(--accent); }
+
+      nav ul a:hover {
+        background: none;
+        color: var(--accent);
+      }
+
       .nav-btn {
         padding: 10px 22px !important;
         margin: 0;
@@ -1220,9 +1395,20 @@
         justify-content: space-between;
         gap: 60px;
       }
-      .hero-left { max-width: 680px; }
-      .hero-h1 { font-size: clamp(2.8rem, 5vw, 4.2rem); }
-      .hero-sub { font-size: 1.05rem; margin-bottom: 44px; }
+
+      .hero-left {
+        max-width: 680px;
+      }
+
+      .hero-h1 {
+        font-size: clamp(2.8rem, 5vw, 4.2rem);
+      }
+
+      .hero-sub {
+        font-size: 1.05rem;
+        margin-bottom: 44px;
+      }
+
       .scroll-hint {
         display: inline-flex;
         align-items: center;
@@ -1235,6 +1421,7 @@
         writing-mode: vertical-rl;
         transform: rotate(180deg);
       }
+
       .scroll-hint::before {
         content: '';
         width: 1px;
@@ -1242,50 +1429,153 @@
         background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.3));
       }
 
-      #stats { padding: 0 60px; }
-      .stat { flex: 1; padding: 36px 40px; border-bottom: none; }
-      .stat:nth-child(2n) { border-right: 1px solid rgba(255, 255, 255, 0.2); }
-      .stat:last-child { border-right: none; }
-      .stat-num { font-size: clamp(2rem, 4vw, 2.6rem); }
+      #stats {
+        padding: 0 60px;
+      }
 
-      #sobre, #servicos, #depoimentos, #clientes { padding: 120px 60px; }
-      #fundadores, #qualidade, #contato, #atuacao { padding: 120px 60px; }
+      .stat {
+        flex: 1;
+        padding: 36px 40px;
+        border-bottom: none;
+      }
 
-      .sobre-layout { grid-template-columns: 1fr 1fr; gap: 80px; }
-      .section-h2 { font-size: clamp(1.9rem, 3vw, 2.7rem); }
-      .mvv-card { padding: 28px 30px; }
+      .stat:nth-child(2n) {
+        border-right: 1px solid rgba(255, 255, 255, 0.2);
+      }
 
-      .fundadores-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
-      .fundador-card { min-height: 750px; }
-      .carousel-wrapper { height: 70%; }
-      .fundador-body { padding: 30px 32px; height: 30%; }
-      .fundador-name { font-size: 1.35rem; }
-      .carousel-btn { width: 40px; height: 40px; font-size: 1.1rem; }
-      .carousel-btn.prev { left: 12px; }
-      .carousel-btn.next { right: 12px; }
+      .stat:last-child {
+        border-right: none;
+      }
 
-      .servicos-grid { grid-template-columns: repeat(4, 1fr); }
-      .servicos-header { flex-direction: row; justify-content: space-between; align-items: flex-end; gap: 60px; margin-bottom: 64px; }
+      .stat-num {
+        font-size: clamp(2rem, 4vw, 2.6rem);
+      }
 
-      .qualidade-grid { grid-template-columns: 1fr 1fr; gap: 60px; margin-top: 64px; }
-      .cert-card { padding: 30px; }
+      #sobre,
+      #servicos,
+      #depoimentos,
+      #clientes {
+        padding: 120px 60px;
+      }
 
-      .atuacao-inner { grid-template-columns: 1fr 1fr; gap: 80px; }
-      .atuacao-left { text-align: left; }
-      .atuacao-stat .num { font-size: clamp(2rem, 5vw, 2.4rem); }
+      #fundadores,
+      #qualidade,
+      #contato,
+      #atuacao {
+        padding: 120px 60px;
+      }
 
-      .depoimentos-grid { grid-template-columns: repeat(3, 1fr); }
+      .sobre-layout {
+        grid-template-columns: 1fr 1fr;
+        gap: 80px;
+      }
 
-      .contato-grid { grid-template-columns: 1fr 1.1fr; gap: 80px; }
-      .form-panel { padding: 44px; }
+      .section-h2 {
+        font-size: clamp(1.9rem, 3vw, 2.7rem);
+      }
 
-      footer { padding: 60px 60px 30px; }
-      .footer-top { grid-template-columns: 2fr 1fr 1fr 1fr; gap: 60px; padding-bottom: 48px; }
+      .mvv-card {
+        padding: 28px 30px;
+      }
+
+      .fundadores-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 32px;
+      }
+
+      .fundador-card {
+        min-height: 750px;
+      }
+
+      .carousel-wrapper {
+        height: 70%;
+      }
+
+      .fundador-body {
+        padding: 30px 32px;
+        height: 30%;
+      }
+
+      .fundador-name {
+        font-size: 1.35rem;
+      }
+
+      .carousel-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 1.1rem;
+      }
+
+      .carousel-btn.prev {
+        left: 12px;
+      }
+
+      .carousel-btn.next {
+        right: 12px;
+      }
+
+      .servicos-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+
+      .servicos-header {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-end;
+        gap: 60px;
+        margin-bottom: 64px;
+      }
+
+      .qualidade-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 60px;
+        margin-top: 64px;
+      }
+
+      .cert-card {
+        padding: 30px;
+      }
+
+      .atuacao-inner {
+        grid-template-columns: 1fr 1fr;
+        gap: 80px;
+      }
+
+      .atuacao-left {
+        text-align: left;
+      }
+
+      .atuacao-stat .num {
+        font-size: clamp(2rem, 5vw, 2.4rem);
+      }
+
+      .depoimentos-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .contato-grid {
+        grid-template-columns: 1fr 1.1fr;
+        gap: 80px;
+      }
+
+      .form-panel {
+        padding: 44px;
+      }
+
+      footer {
+        padding: 60px 60px 30px;
+      }
+
+      .footer-top {
+        grid-template-columns: 2fr 1fr 1fr 1fr;
+        gap: 60px;
+        padding-bottom: 48px;
+      }
     }
 
     /* ===== VIDEO INSTITUCIONAL SECTION ===== */
     #video-institucional {
-      padding: 60px 20px;
+      padding: 120px 20px 60px;
       background: linear-gradient(135deg, var(--navy-dark) 0%, #15223c 100%);
       position: relative;
       overflow: hidden;
@@ -1329,10 +1619,12 @@
     .video-player-wrapper {
       position: relative;
       width: 100%;
-      padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+      padding-bottom: 56.25%;
+      /* 16:9 Aspect Ratio */
       height: 0;
       border-radius: 12px;
-      overflow: visible; /* to allow glow */
+      overflow: visible;
+      /* to allow glow */
       background: #000;
       box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
       border: 1px solid rgba(255, 255, 255, 0.08);
@@ -1443,8 +1735,15 @@
     }
 
     @keyframes pulseGlow {
-      0% { transform: scale(0.85); opacity: 0.4; }
-      100% { transform: scale(1.2); opacity: 0.9; }
+      0% {
+        transform: scale(0.85);
+        opacity: 0.4;
+      }
+
+      100% {
+        transform: scale(1.2);
+        opacity: 0.9;
+      }
     }
 
     .video-cover:hover .custom-play-btn {
@@ -1499,12 +1798,14 @@
     <div class="nav-brand">
       <a href="#hero"><img src="images/logo.jpg" alt="Linhares Facilities" class="nav-logo"></a>
     </div>
-    <button class="hamburger" id="hamburger" aria-label="Menu" onclick="document.getElementById('nav').classList.toggle('nav-open')">
+    <button class="hamburger" id="hamburger" aria-label="Menu"
+      onclick="document.getElementById('nav').classList.toggle('nav-open')">
       <span></span><span></span><span></span>
     </button>
     <ul id="nav-menu">
       <li><a href="#sobre" onclick="document.getElementById('nav').classList.remove('nav-open')">Sobre</a></li>
-      <li><a href="#video-institucional" onclick="document.getElementById('nav').classList.remove('nav-open')">Institucional</a></li>
+      <li><a href="#video-institucional"
+          onclick="document.getElementById('nav').classList.remove('nav-open')">Institucional</a></li>
       <li><a href="#servicos" onclick="document.getElementById('nav').classList.remove('nav-open')">Serviços</a></li>
       <li><a href="#qualidade" onclick="document.getElementById('nav').classList.remove('nav-open')">Qualidade</a></li>
       <li><a href="#atuacao" onclick="document.getElementById('nav').classList.remove('nav-open')">Atuação</a></li>
@@ -1514,6 +1815,45 @@
           target="_blank" class="nav-btn">Fale Conosco</a></li>
     </ul>
   </nav>
+
+  <!-- VÍDEO INSTITUCIONAL -->
+  <section id="video-institucional" style="padding-top: 100px;">
+    <div class="video-container-centered">
+
+      <!-- Cabeçalho do Vídeo -->
+      <div class="video-header">
+        <p class="section-eyebrow" style="color: var(--accent-light); text-align: center;">Apresentação Digital</p>
+        <h2 class="section-h2" style="color: #fff; text-align: center; margin-bottom: 30px;">Conheça a <em
+            style="color: var(--accent-light);">Linhares Facilities</em> em vídeo</h2>
+      </div>
+
+      <!-- Player de Vídeo -->
+      <div class="player-column-centered">
+        <div class="video-player-wrapper" id="videoWrapper">
+          <!-- Ambient Glow (Soft lighting behind the video) -->
+          <div class="ambient-glow" id="ambientGlow"></div>
+
+          <!-- Custom Video Cover (Poster) -->
+          <div class="video-cover" id="videoCover" onclick="iniciarVideo()">
+            <div class="video-cover-overlay"></div>
+            <div class="play-btn-glow"></div>
+            <button class="custom-play-btn" aria-label="Reproduzir vídeo">
+              <svg viewBox="0 0 24 24" fill="none" class="play-icon">
+                <path d="M8 5v14l11-7z" fill="currentColor" />
+              </svg>
+            </button>
+            <div class="video-cover-info" style="text-align: center; left: 0; right: 0; bottom: 30px;">
+              <h3 style="text-align: center;">Linhares Facilities em Ação</h3>
+            </div>
+          </div>
+
+          <!-- Youtube Player Iframe Placeholder -->
+          <div id="youtubePlayer"></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
 
   <!-- HERO -->
   <section id="hero">
@@ -1595,45 +1935,6 @@
           </div>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- VÍDEO INSTITUCIONAL -->
-  <section id="video-institucional">
-    <div class="video-container-centered">
-      
-      <!-- Cabeçalho do Vídeo -->
-      <div class="video-header">
-        <p class="section-eyebrow" style="color: var(--accent-light); text-align: center;">Apresentação Digital</p>
-        <h2 class="section-h2" style="color: #fff; text-align: center; margin-bottom: 30px;">Conheça a <em style="color: var(--accent-light);">Linhares Facilities</em> em vídeo</h2>
-      </div>
-
-      <!-- Player de Vídeo -->
-      <div class="player-column-centered">
-        <div class="video-player-wrapper" id="videoWrapper">
-          <!-- Ambient Glow (Soft lighting behind the video) -->
-          <div class="ambient-glow" id="ambientGlow"></div>
-          
-          <!-- Custom Video Cover (Poster) -->
-          <div class="video-cover" id="videoCover" onclick="iniciarVideo()">
-            <div class="video-cover-overlay"></div>
-            <div class="play-btn-glow"></div>
-            <button class="custom-play-btn" aria-label="Reproduzir vídeo">
-              <svg viewBox="0 0 24 24" fill="none" class="play-icon">
-                <path d="M8 5v14l11-7z" fill="currentColor"/>
-              </svg>
-            </button>
-            <div class="video-cover-info" style="text-align: center; left: 0; right: 0; bottom: 30px;">
-              <span class="badge-live">INSTITUCIONAL</span>
-              <h3 style="text-align: center;">Linhares Facilities em Ação</h3>
-            </div>
-          </div>
-          
-          <!-- Youtube Player Iframe Placeholder -->
-          <div id="youtubePlayer"></div>
-        </div>
-      </div>
-
     </div>
   </section>
 
@@ -1913,7 +2214,8 @@
             <div>
               <div class="contact-label">E-mail</div>
               <div class="contact-value"><a href="mailto:comercial@linharesfacilities.com.br"
-                  style="color:var(--accent);text-decoration:none;font-weight:600">comercial@linharesfacilities.com.br</a></div>
+                  style="color:var(--accent);text-decoration:none;font-weight:600">comercial@linharesfacilities.com.br</a>
+              </div>
             </div>
           </div>
 
@@ -2094,7 +2396,7 @@
     })();
 
     /* ---- YouTube Player API Integration ---- */
-    
+
     // Load YouTube API asynchronously
     var tag = document.createElement('script');
     tag.src = "https://www.youtube.com/iframe_api";
@@ -2107,7 +2409,7 @@
       const cover = document.getElementById('videoCover');
       cover.style.opacity = '0';
       setTimeout(() => cover.style.display = 'none', 600);
-      
+
       // Initialize YouTube player with native controls enabled
       ytPlayer = new YT.Player('youtubePlayer', {
         height: '100%',
