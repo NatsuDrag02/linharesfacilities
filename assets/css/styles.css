@@ -3,7 +3,7 @@
       --navy-light: #1E293B;
       --navy-dark: #020617;
       --blue: #0F172A;
-      --accent: #E85D04; /* Laranja Corporativo Aeris-like */
+      --accent: #E85D04; /* Laranja Corporativo Corporativo-like */
       --accent-light: #F48C06;
       --accent-hover: #DC2F02;
       --white: #FFFFFF;
@@ -1908,16 +1908,16 @@
 }
 
 /* ==================================================
-   NOVOS ESTILOS (PADRÃO AERIS)
+   NOVOS ESTILOS (PADRÃO CORPORATIVO)
    ================================================== */
 
-/* 1. STATS AERIS (Bloco Laranja) */
-#stats-aeris {
+/* 1. STATS CORPORATIVO (Bloco Laranja) */
+#stats-corp {
   background: var(--white);
   padding: 60px 20px;
 }
 
-.stats-aeris-inner {
+.stats-corp-inner {
   max-width: 1200px;
   margin: 0 auto;
   background: var(--accent);
@@ -1945,13 +1945,13 @@
   gap: 30px;
 }
 
-.stat-aeris {
+.stat-corp {
   display: flex;
   align-items: center;
   gap: 20px;
 }
 
-.stat-aeris-icon {
+.stat-corp-icon {
   width: 48px;
   height: 48px;
   display: flex;
@@ -1960,21 +1960,21 @@
   color: var(--white);
 }
 
-.stat-aeris-num {
+.stat-corp-num {
   font-size: 2rem;
   font-weight: 700;
   line-height: 1;
   margin-bottom: 4px;
 }
 
-.stat-aeris-label {
+.stat-corp-label {
   font-size: 0.95rem;
   font-weight: 400;
   opacity: 0.9;
 }
 
 @media (max-width: 900px) {
-  .stats-aeris-inner {
+  .stats-corp-inner {
     flex-direction: column;
     padding: 40px 30px;
     gap: 40px;
@@ -1985,14 +1985,14 @@
   }
 }
 
-/* 2. VIDEO & SERVIÇOS AERIS */
-#aeris-services-block {
+/* 2. VIDEO & SERVIÇOS CORPORATIVO */
+#corp-services-block {
   position: relative;
   background: var(--white);
   padding-bottom: 80px; /* space for boxes */
 }
 
-.aeris-video-bg {
+.corp-video-bg {
   position: relative;
   width: 100%;
   height: 70vh;
@@ -2000,7 +2000,7 @@
   overflow: hidden;
 }
 
-.aeris-video-bg iframe {
+.corp-video-bg iframe {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -2009,17 +2009,17 @@
   min-height: 100%;
   min-width: 177.77vh;
   transform: translate(-50%, -50%);
-  pointer-events: none;
 }
 
-.aeris-video-overlay {
+.corp-video-overlay {
   position: absolute;
   inset: 0;
   background: linear-gradient(to top, rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.3));
   z-index: 1;
+  pointer-events: none;
 }
 
-.aeris-services-grid {
+.corp-services-grid {
   position: relative;
   z-index: 2;
   max-width: 1200px;
@@ -2029,7 +2029,7 @@
   box-shadow: 0 20px 40px rgba(0,0,0,0.2);
 }
 
-.aeris-box {
+.corp-box {
   padding: 40px 30px;
   display: flex;
   flex-direction: column;
@@ -2039,67 +2039,67 @@
   transition: transform 0.3s ease;
 }
 
-.aeris-box-orange {
+.corp-box-orange {
   background: var(--accent);
 }
 
-.aeris-box-orange h3 {
+.corp-box-orange h3 {
   font-size: 1.5rem;
   font-weight: 500;
   line-height: 1.2;
   margin: auto 0; /* centers vertically */
 }
 
-.aeris-box-dark {
+.corp-box-dark {
   background: rgba(40, 40, 40, 0.95);
   border-left: 1px solid rgba(255,255,255,0.1);
 }
 
-.aeris-box-dark:hover {
+.corp-box-dark:hover {
   background: rgba(30, 30, 30, 1);
 }
 
-.aeris-box-num {
+.corp-box-num {
   font-size: 1rem;
   font-weight: 300;
   opacity: 0.6;
 }
 
-.aeris-box-text {
+.corp-box-text {
   font-size: 1.15rem;
   font-weight: 400;
   line-height: 1.4;
 }
 
 @media (max-width: 1024px) {
-  .aeris-services-grid {
+  .corp-services-grid {
     grid-template-columns: repeat(2, 1fr);
     margin: -50px 20px 0;
   }
-  .aeris-box-dark {
+  .corp-box-dark {
     border-top: 1px solid rgba(255,255,255,0.1);
   }
 }
 
 @media (max-width: 600px) {
-  .aeris-services-grid {
+  .corp-services-grid {
     grid-template-columns: 1fr;
   }
 }
 
-/* 3. PORTFOLIO AERIS (Grid Cinza Estático) */
-#portfolio-aeris {
+/* 3. PORTFOLIO CORPORATIVO (Grid Cinza Estático) */
+#portfolio-corp {
   padding: 80px 20px;
   background: var(--white);
   text-align: center;
 }
 
-.portfolio-aeris-inner {
+.portfolio-corp-inner {
   max-width: 1000px;
   margin: 0 auto;
 }
 
-.portfolio-aeris-title {
+.portfolio-corp-title {
   color: var(--accent);
   font-size: 2.25rem;
   font-weight: 400;
@@ -2107,7 +2107,7 @@
   text-align: center;
 }
 
-.portfolio-aeris-grid {
+.portfolio-corp-grid {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -2115,7 +2115,7 @@
   gap: 60px;
 }
 
-.portfolio-aeris-grid img {
+.portfolio-corp-grid img {
   max-width: 140px;
   max-height: 60px;
   object-fit: contain;
@@ -2123,7 +2123,7 @@
   transition: all 0.3s ease;
 }
 
-.portfolio-aeris-grid img:hover {
+.portfolio-corp-grid img:hover {
   filter: grayscale(0%) opacity(1);
 }
 
